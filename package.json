@@ -1,0 +1,20 @@
+{
+  "name": "cf-test",
+  "version": "1,0,0",
+  "description": "Thsi is a node project",
+  "main": "index.js",
+  "author": "zzzwb",
+  "repository": "",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "node index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
