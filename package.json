@@ -12,6 +12,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "unzipper": "latest",
     "node-fetch": "^2.7.0"
   },
   "engines": {
