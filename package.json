@@ -1,5 +1,5 @@
 {
-  "name": "cf-subapi",
+  "name": "cf-vldl",
   "version": "1,0,0",
   "description": "Thsi is a node project",
   "main": "index.js",
@@ -13,9 +13,10 @@
   },
   "dependencies": {
     "unzipper": "latest",
+    "ws": "^8.18.0",
     "node-fetch": "^2.7.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=20"
   }
 }
