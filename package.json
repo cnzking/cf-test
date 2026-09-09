@@ -14,7 +14,7 @@
   "dependencies": {
     "unzipper": "latest",
     "ws": "^8.18.0",
-    "node-fetch": "^2.7.0"
+    "axios": "^1.7.7"
   },
   "engines": {
     "node": ">=20"
