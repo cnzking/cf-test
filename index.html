@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>翻页时钟</title>
+<title>方块电子时钟 By zzzwb.com</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui, sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
   min-height:100vh;
   background:#111;
@@ -13,114 +13,55 @@ body{
   align-items:center;
   justify-content:center;
 }
-.clock-wrap{
+.wrap{
   display:flex;
-  gap:12px;
+  gap:10px;
+  align-items:center;
 }
-.flip-card{
-  position:relative;
-  width:90px;
-  height:120px;
-  perspective: 200px;
-}
-.flip-card .num{
-  width:100%;
-  height:100%;
-  position:absolute;
-  color:#fff;
-  font-size:80px;
-  text-align:center;
-  line-height:120px;
+.num{
+  width:80px;
+  height:110px;
   background:#222;
-  border-radius:8px;
-  overflow:hidden;
-  box-shadow:0 4px 10px #0008;
-}
-.flip-card .top{
-  height:50%;
-  width:100%;
-  position:absolute;
-  top:0;
-  backface-visibility:hidden;
-  transform-origin:bottom center;
-  border-bottom:1px solid #000;
-}
-.flip-card .bottom{
-  height:50%;
-  width:100%;
-  position:absolute;
-  bottom:0;
-  backface-visibility:hidden;
-  transform-origin:top center;
-}
-.flip-card.flip .top{
-  animation: flipTop 0.6s ease-in forwards;
-}
-.flip-card.flip .bottom{
-  animation: flipBottom 0.6s ease-out forwards;
-}
-@keyframes flipTop{
-  0%{transform:rotateX(0deg);z-index:2;}
-  100%{transform:rotateX(-180deg);z-index:1;}
-}
-@keyframes flipBottom{
-  0%{transform:rotateX(180deg);z-index:1;}
-  100%{transform:rotateX(0deg);z-index:2;}
-}
-.sep{
   color:#fff;
-  font-size:80px;
-  line-height:120px;
+  font-size:76px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+}
+.colon{
+  color:#fff;
+  font-size:76px;
 }
 </style>
 </head>
 <body>
-<div class="clock-wrap">
-  <div class="flip-card" id="h1"><div class="num top"></div><div class="num bottom"></div></div>
-  <div class="flip-card" id="h2"><div class="num top"></div><div class="num bottom"></div></div>
-  <div class="sep">:</div>
-  <div class="flip-card" id="m1"><div class="num top"></div><div class="num bottom"></div></div>
-  <div class="flip-card" id="m2"><div class="num top"></div><div class="num bottom"></div></div>
-  <div class="sep">:</div>
-  <div class="flip-card" id="s1"><div class="num top"></div><div class="num bottom"></div></div>
-  <div class="flip-card" id="s2"><div class="num top"></div><div class="num bottom"></div></div>
+<div class="wrap">
+  <div class="num" id="h1"></div>
+  <div class="num" id="h2"></div>
+  <div class="colon">:</div>
+  <div class="num" id="m1"></div>
+  <div class="num" id="m2"></div>
+  <div class="colon">:</div>
+  <div class="num" id="s1"></div>
+  <div class="num" id="s2"></div>
 </div>
 
 <script>
-const cards = {
-  h1: document.getElementById('h1'),
-  h2: document.getElementById('h2'),
-  m1: document.getElementById('m1'),
-  m2: document.getElementById('m2'),
-  s1: document.getElementById('s1'),
-  s2: document.getElementById('s2'),
-};
-let oldTime = {h1:'',h2:'',m1:'',m2:'',s1:'',s2:''};
-
-function updateClock(){
+function update() {
   const now = new Date();
   const h = String(now.getHours()).padStart(2,'0');
   const m = String(now.getMinutes()).padStart(2,'0');
   const s = String(now.getSeconds()).padStart(2,'0');
-  const newTime = {
-    h1: h[0], h2: h[1],
-    m1: m[0], m2: m[1],
-    s1: s[0], s2: s[1],
-  };
-  for(const key in newTime){
-    if(newTime[key] !== oldTime[key]){
-      const card = cards[key];
-      card.classList.remove('flip');
-      card.querySelector('.top').textContent = oldTime[key];
-      card.querySelector('.bottom').textContent = newTime[key];
-      void card.offsetWidth; // 触发重绘
-      card.classList.add('flip');
-      oldTime[key] = newTime[key];
-    }
-  }
+  document.getElementById('h1').textContent = h[0];
+  document.getElementById('h2').textContent = h[1];
+  document.getElementById('m1').textContent = m[0];
+  document.getElementById('m2').textContent = m[1];
+  document.getElementById('s1').textContent = s[0];
+  document.getElementById('s2').textContent = s[1];
 }
-updateClock();
-setInterval(updateClock, 1000);
+update();
+setInterval(update,1000);
 </script>
 </body>
 </html>
